@@ -741,7 +741,7 @@ int RouteController::configureDummyNetwork() {
 // used for directly-connected routes implicitly created by the kernel when adding IP addresses.
 // This is necessary, for example, when adding a route through a directly-connected gateway: in
 // order to add the route, there must already be a directly-connected route that covers the gateway.
-WARN_UNUSED_RESULT int addDirectlyConnectedRule() {
+[[nodiscard]] int addDirectlyConnectedRule() {
     Fwmark fwmark;
     Fwmark mask;
 

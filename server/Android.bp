@@ -108,7 +108,11 @@ filegroup {
 // Modules common to both netd and netd_unit_test
 cc_library_static {
     name: "libnetd_server",
-    defaults: ["netd_defaults"],
+        defaults: [
+        "netd_defaults",
+        "needs_netd_direct_connect_rule_defaults",
+        "ignores_ftp_pptp_conntrack_failure",
+    ],
     include_dirs: [
         "system/netd/include",
         "system/netd/server/binder",
@@ -153,16 +157,6 @@ cc_library_static {
     aidl: {
         export_aidl_headers: true,
         local_include_dirs: ["binder"],
-    },
-    product_variables: {
-        cesium: {
-            target_needs_netd_direct_connect_rule: {
-                cppflags: ["-DNEEDS_NETD_DIRECT_CONNECT_RULE"],
-            },
-            target_ignores_ftp_pptp_conntrack_failure: {
-                cppflags: ["-DIGNORES_FTP_PPTP_CONNTRACK_FAILURE"],
-            },
-        },
     },
 }
 
